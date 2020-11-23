@@ -26,7 +26,7 @@ int modular_solution(int remainder[],int modular[],int size) {
 			*get_inverse(modular_cross,modular[i])%modular[i];
 		result = (result + remainder[i] * modular_cross);
 	}
-	printf("%d", result);
+	printf("단 하나의 해는: %d", result);
 	return 0;
 }
 
@@ -37,8 +37,8 @@ int main() {
 	int mo[4] = { 2,3,5,7 };*/
 	/*int re[3] = {2,3,2};
 	int mo[3] = {3,5,7};*/
-	int re[5] = { 1,2,3,4,5 };
-	int mo[5] = { 2,3,5,7,11 };
+	int re[5] = { 0,0,0,0 };
+	int mo[5] = { 2,3,5,7 };
 	modular_solution(re, mo ,sizeof(mo)/sizeof(typeid(mo).name()));
 	return 0;
 }
