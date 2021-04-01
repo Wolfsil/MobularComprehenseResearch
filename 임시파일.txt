@@ -1,0 +1,52 @@
+int modular_solution(int remainder[], int modular[], int size) {
+
+	int cross_modural = modular[0];
+	int modular_cross = 1;
+	int result = remainder[0];
+	for (int i = 1; i < size; i++) {
+		modular_cross = modular_cross * modular[i - 1];
+
+		cout << "remainder[i]=" << remainder[i] << endl << "result=" << result << endl << "modular_cross=" << modular_cross << endl << "modular[i]=" << modular[i] << endl;
+		cout << "(remainder[i] - result) * get_inverse(modular_cross, modular[i])==" << (remainder[i] - result) * get_inverse(modular_cross, modular[i]) << endl;
+		remainder[i] = get_remainder(
+			(remainder[i] - result) * get_inverse(modular_cross, modular[i]),
+			modular[i]
+		);
+		cout << result << "+" << remainder[i] << "*" << modular_cross << "=";
+		result = (result + remainder[i] * modular_cross);
+		cout << endl << endl;
+	}
+	printf("단 하나의 해는: %d\n", result);
+	printf("단 하나의 해는: %d", result % modular[size - 3]);
+	return result;
+}
+int get_inverse(int value, int modular) {
+	int result=1;
+	value =get_remainder(value, modular);
+	for (int i = 0; i < modular - 2; i++){ result = (result * value) % modular;}
+	return result;
+}
+
+int get_remainder(int solution, int modular) {
+
+	while (solution < 0) {
+		solution = modular + solution; 
+	}
+	return solution % modular;
+}
+
+	
+int modular_solution(int remainder[], int modular[], int size) {
+
+	int cross_modural = modular[0];
+	int modular_cross = 1;
+	int result = remainder[0];
+	for (int i = 1; i < size; i++) {
+		modular_cross = modular_cross * modular[i - 1];
+		remainder[i] = get_remainder((remainder[i] - result) * get_inverse(modular_cross, modular[i]), modular[i]);
+		result = (result + remainder[i] * modular_cross);
+
+	}
+	printf("단 하나의 해는: %d", result);
+	return 0;
+}
